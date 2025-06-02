@@ -26,3 +26,16 @@ c)
 | **Cas d’usage**              | Parfait pour le développement                        | Parfait pour la production ou CI/CD                                  |
 | **Taille de l'image**        | Aucune modification de l’image                       | L’image inclut les fichiers copiés, donc potentiellement plus lourde |
 | **Sécurité**                 | Risque de fuite de fichiers locaux si mal configuré  | Contrôlé et figé dans l’image                                        |
+
+
+5)
+a) docker pull mysql
+docker pull phpmyadmin/phpmyadmin
+
+b) 
+
+docker network create my-network
+
+ docker run --name mysql-db --network my-network -e MYSQL_ROOT_PASSWORD=rootpass -e MYSQL_DATABASE=testdb -d mysql
+
+ docker run --name my-admin --network my-network -p 8080:80 -e PMA_HOST=mysql-db -e PMA_PORT=3306 -d phpmyadmin/phpmyadmin
