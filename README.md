@@ -39,3 +39,17 @@ docker network create my-network
  docker run --name mysql-db --network my-network -e MYSQL_ROOT_PASSWORD=rootpass -e MYSQL_DATABASE=testdb -d mysql
 
  docker run --name my-admin --network my-network -p 8080:80 -e PMA_HOST=mysql-db -e PMA_PORT=3306 -d phpmyadmin/phpmyadmin
+
+6)a)
+
+| Aspect               | `docker run`                            | `docker-compose`                                                     |
+| -------------------- | --------------------------------------- | -------------------------------------------------------------------- |
+| **Syntaxe**          | Ligne de commande, longue et répétitive | Déclaratif, dans un fichier YAML                                     |
+| **Multi-containers** | À gérer manuellement avec `docker run`  | Gère facilement plusieurs services (containers) dans un seul fichier |
+| **Lisibilité**       | Peu lisible et peu réutilisable         | Très lisible, versionnable et maintenable                            |
+| **Networking**       | Réseaux à créer manuellement            | Crée automatiquement un réseau pour tous les services                |
+| **Cas d’usage**      | Tests rapides, petits containers isolés | Projets complets avec plusieurs services (web, DB, etc.)             |
+
+b) Lancer tous les containers : docker-compose up -d
+
+Les stopper : docker-compose down
